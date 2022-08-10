@@ -1,75 +1,31 @@
-import React, { useEffect, useState } from 'react';
-import Cart from '../Cart/Cart';
+import React from 'react';
+import { useEffect } from 'react';
+import { useState } from 'react';
 import Product from '../Product/Product';
-import { addToDb, getStoredCart } from '../../utilities/fakedb';
-import './Shop.css';
+import './Shop.css'
 
 const Shop = () => {
     const [products, setProducts] = useState([]);
-    const [cart, setCart] = useState([]);
-    const [displayProducts, setdisplayProducts] = useState([]);
-    useEffect(() =>{
-        fetch('./products.JSON')
-          .then(res => res.json())
-          .then(data => {
-              setProducts(data);
-              setdisplayProducts(data)
-          });
-    }, []);
 
-    useEffect(() =>{
-        const savedCart = getStoredCart();
-        if(products.length) {
-            const storedCart = [];
-            for(const key in savedCart){
-                const addedProduct = products.find( product => product.key === key);
-                if(addedProduct){
-                    const quantity = savedCart[key];
-                    addedProduct.quantity = quantity;
-                    storedCart.push(addToCart);
-                }
-            }
-            setCart(storedCart);
-        }
-    }, [products])
-
-    const addToCart = (product) =>{
-        const newCart = [...cart, product];
-        setCart(newCart);
-        addToDb(product.key);
-    }
-
-    const handleSearch = event => {
-        const searchText = event.target.value;
-        const matchProducts = products.filter(product => product.name.toLowerCase().includes(searchText.toLowerCase()));
-        setdisplayProducts(matchProducts);
-        console.log(matchProducts.length);
-    }
+    useEffect ( () => {
+        fetch('products.json')
+         .then(res => res.json())
+         .then(data => setProducts(data))
+    }, [])
     return (
-        <>
-            <div className="search-container">
-                <input 
-                    type="text"
-                    onChange={handleSearch}
-                    placeholder='search product'/>
-            </div>
-            <div className='shop-container'>
-            <div className="prduct-container">
-                <h3>Products:{products.length} </h3>
+        <div className='shop-container'>
+            <div className="products-container">
                 {
-                    displayProducts.map(product => <Product
-                        key={product.key}
+                    products.map(product => <Product 
+                        key={product.id}
                         product={product}
-                        addToCart={addToCart}
-                    ></Product>)
+                    />)
                 }
             </div>
             <div className="cart-container">
-                <Cart cart={cart}></Cart>
+                <h4>Order Summary</h4>
             </div>
-            </div>
-        </>
-        
+        </div>
     );
 };
 

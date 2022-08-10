@@ -1,11 +1,16 @@
 .header{
-    text-align: center;
+    height: 80px;
+    background-color: gray;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 140px;
+    padding-right: 140px;
 }
 .logo{
     height: 50px;
 }
 .header nav{
-    background-color: black;
     line-height: 40px;
 }
 .header nav a{
@@ -13,7 +18,7 @@
     color: white;
     margin-right: 20px;
     padding: 5px;
-    font-size: 20px;
+    font-size: 17px;
 }
 .header nav a:hover{
     background-color: lightgrey;

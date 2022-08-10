@@ -1,20 +1,15 @@
-.product{
-    display: flex;
-    border-bottom: 1px solid lightgray;
-    margin-right: 10px;
+.product {
+    width: 300px;
+    height: 510px;
 }
-.product-name{
-    color: blueviolet;
+.product img {
+    width: 280px;
+    height: 280px;
+}
+.product-name {
+    font-family: 'Lato';
+    font-style: normal;
     font-weight: 400;
-}
-.btn-regular{
-    background-color: goldenrod;
-    width: 150px;
-    height: 25px;
-    border: 1px solid gray;
-    border-radius: 5px;
-    cursor: pointer;
-}
-.icon-color{
-    color: goldenrod;
+    font-size: 21px;
+    line-height: 25px;
 }
